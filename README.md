@@ -58,8 +58,9 @@ This script would compress the LLaMA-7B model with ～20\% parameters pruned by 
 
 **LLaMA-7B pruning with ~20% parameters pruned:**
 ```
+export HF_ENDPOINT=https://hf-mirror.com
 python main.py \
-    --model decapoda-research/llama-7b-hf \
+    --model jeffwan/llama-7b-hf \
     --prune_method flap \
     --pruning_ratio 0.2 \
     --remove_heads -1 \
@@ -67,7 +68,7 @@ python main.py \
     --structure AL-AM \
     --nsamples 1024 \
     --save_model "llm_weights/flap_p0.2_WIFV_ALAM_llama_7b/" \
-    --eval \
+    --eval 
 ```
 Arguments:
 - `--model`: The identifier for the LLaMA model on the Hugging Face model hub. The model name is used for `AutoModelForCausalLM.from_pretrained` to load the pre-trained LLM. For example, if you want to use the LLaMA with 7 billion parameters, than pass `decapoda-research/llama-7b-hf` to `--model`.
